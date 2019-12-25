@@ -22,6 +22,7 @@ GEM
     headless (2.3.1)
     i18n (1.7.0)
       concurrent-ruby (~> 1.0)
+    iniparse (1.4.4)
     jaro_winkler (1.5.4)
     jmespath (1.4.0)
     onlyoffice_file_helper (0.1.0)
@@ -39,6 +40,9 @@ GEM
       page-object (~> 2)
       selenium-webdriver (= 3.142.6)
       watir (~> 6)
+    overcommit (0.52.0)
+      childprocess (>= 0.6.3, < 4)
+      iniparse (~> 1.4)
     page-object (2.2.6)
       page_navigation (>= 0.10)
       selenium-webdriver (~> 3.0)
@@ -75,6 +79,7 @@ PLATFORMS
 
 DEPENDENCIES
   onlyoffice_webdriver_wrapper
+  overcommit
   rubocop
   rubocop-performance
 
