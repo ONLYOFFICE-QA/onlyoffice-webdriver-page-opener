@@ -10,6 +10,6 @@ RUN apt-get -y update && \
                        xvfb
 ADD . /onlyoffice-webdriver-page-opener
 WORKDIR /onlyoffice-webdriver-page-opener
-RUN bundle install
+RUN bundle install --without development
 
 CMD ruby script.rb
