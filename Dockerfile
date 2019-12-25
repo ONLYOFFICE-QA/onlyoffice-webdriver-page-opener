@@ -12,4 +12,4 @@ ADD . /onlyoffice-webdriver-page-opener
 WORKDIR /onlyoffice-webdriver-page-opener
 RUN bundle install
 
-RUN ruby script.rb
+CMD ruby script.rb
