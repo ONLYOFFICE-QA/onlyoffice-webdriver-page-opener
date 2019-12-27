@@ -21,5 +21,5 @@ Send as environment variables
 
 This is optional, if not specified - screenshot saved locally
 
-`S3_KEY` - S3 key
+`S3_KEY` - S3 key  
 `S3_PRIVATE_KEY` - S3 private key 
