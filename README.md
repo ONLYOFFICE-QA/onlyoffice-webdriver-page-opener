@@ -10,3 +10,16 @@ do
   sleep 20
 done
 ```
+
+## Parameters
+
+Send as environment variables
+
+`URL` - address of server to generate load
+
+### Saving screenshot to S3
+
+This is optional, if not specified - screenshot saved locally
+
+`S3_KEY` - S3 key
+`S3_PRIVATE_KEY` - S3 private key 
