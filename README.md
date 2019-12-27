@@ -7,7 +7,7 @@ Tool for open browser window with specific page
 ```bash
 for run in {1..10}
 do
-  docker run -itd -e URL='http://178.128.186.166:8000/open?' -e S3_KEY='AKIAQYJDILMUVKOZUODU' -e S3_PRIVATE_KEY='m36QWf6OEsWrQpYondIwXYZZRr2hzb7dGnMi00rc' shockwavenn/onlyoffice-webdriver-page-opener
+  docker run -itd shockwavenn/onlyoffice-webdriver-page-opener
   sleep 20
 done
 ```
