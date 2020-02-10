@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-gem 'onlyoffice_webdriver_wrapper'
+gem 'onlyoffice_webdriver_wrapper', git: 'https://github.com/onlyoffice-testing-robot/onlyoffice_webdriver_wrapper'
 
 group :development do
   gem 'overcommit'
