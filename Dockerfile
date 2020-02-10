@@ -8,6 +8,7 @@ RUN sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable 
 RUN apt-get -y update && \
     apt-get -y install google-chrome-stable \
                        xvfb
+RUN gem update bundler
 ADD . /onlyoffice-webdriver-page-opener
 WORKDIR /onlyoffice-webdriver-page-opener
 RUN bundle install --without development
