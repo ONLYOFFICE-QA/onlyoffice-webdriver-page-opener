@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'bundler/setup'
 require 'onlyoffice_webdriver_wrapper'
 require_relative 'onlyoffice_webdriver_page_opener/methods'
 
