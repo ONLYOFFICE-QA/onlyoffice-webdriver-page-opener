@@ -8,7 +8,7 @@ def form_url
           else
             {}
           end
-  query[:username] = Socket.gethostname
+  query[:host] = Socket.gethostname
   url.query = URI.encode_www_form(query)
   url.to_s
 end
