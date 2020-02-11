@@ -11,5 +11,6 @@ chrome.open(form_url)
 loop do
   OnlyofficeLoggerHelper.log("Current url: #{chrome.get_url}")
   chrome.webdriver_screenshot
+  puts(chrome.browser_logs)
   sleep(screenshot_timeout)
 end
