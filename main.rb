@@ -8,7 +8,7 @@ screenshot_timeout = ENV['SCREENSHOT_TIMEOUT'] || 60
 
 instance = OnlyofficeDocumentserverTestingFramework::TestInstanceDocs.new
 chrome = instance.webdriver
-chrome.open(from_url)
+chrome.open(form_url)
 loop do
   OnlyofficeLoggerHelper.log("Current url: #{chrome.get_url}")
   chrome.webdriver_screenshot
