@@ -35,7 +35,7 @@ end
 desc 'Destroy all loaders'
 task :destroy_all_loaders do
   loaders_names.each do |droplet|
-    do_api.destroy_droplet_by_name(droplet.name)
+    do_api.destroy_droplet_by_name(droplet)
   end
 end
 
@@ -56,4 +56,14 @@ task :create_one_more_loader do
   do_api.wait_until_droplet_have_status(next_loader)
   ip_of_server = do_api.get_droplet_ip_by_name(next_loader)
   puts("To access `#{next_loader}` run `ssh root@#{ip_of_server}`")
+end
+
+desc 'Stop (and remove) all containers on all loaders'
+task :stop_all do
+  loaders = loaders_names
+  loaders.flatten.each do |loader|
+    ip_loader = do_api.get_droplet_ip_by_name(loader)
+    `ssh root@#{ip_loader} 'docker stop $(docker ps -a -q)'`
+    `ssh root@#{ip_loader} 'docker rm $(docker ps -a -q)'`
+  end
 end
