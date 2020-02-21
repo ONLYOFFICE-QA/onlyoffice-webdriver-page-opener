@@ -15,6 +15,6 @@ loop do
   puts(chrome.browser_logs)
   sleep(screenshot_timeout)
   unless instance.spreadsheet_editor.top_toolbar.users.count > 1
-    chrome.webdriver_error("Only one user is connected to current document")
+    chrome.webdriver_error('Only one user is connected to current document')
   end
 end
