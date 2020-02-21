@@ -1,4 +1,12 @@
 GIT
+  remote: https://github.com/onlyoffice-testing-robot/onlyoffice_digitalocean_wrapper
+  revision: 3327b43a37154400abbbfb552f19a70880bde7b9
+  specs:
+    onlyoffice_digitalocean_wrapper (0.2.0)
+      droplet_kit (~> 3)
+      onlyoffice_logger_helper (~> 1)
+
+GIT
   remote: https://github.com/onlyoffice-testing-robot/onlyoffice_documentserver_testing_framework
   revision: b2508150111ba3848f1c281021b63fea565ce912
   specs:
@@ -9,6 +17,8 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
+    addressable (2.7.0)
+      public_suffix (>= 2.0.2, < 5.0)
     ast (2.4.0)
     aws-eventstream (1.0.3)
     aws-partitions (1.271.0)
@@ -26,19 +36,38 @@ GEM
       aws-sigv4 (~> 1.1)
     aws-sigv4 (1.1.0)
       aws-eventstream (~> 1.0, >= 1.0.2)
+    axiom-types (0.1.1)
+      descendants_tracker (~> 0.0.4)
+      ice_nine (~> 0.11.0)
+      thread_safe (~> 0.3, >= 0.3.1)
     childprocess (3.0.0)
+    coercible (1.0.0)
+      descendants_tracker (~> 0.0.1)
     concurrent-ruby (1.1.5)
     data_magic (1.2)
       faker (>= 1.1.2)
       yml_reader (>= 0.6)
+    descendants_tracker (0.0.4)
+      thread_safe (~> 0.3, >= 0.3.1)
+    droplet_kit (3.5.1)
+      faraday (~> 0.15)
+      kartograph (~> 0.2.3)
+      resource_kit (~> 0.1.5)
+      virtus (~> 1.0.3)
+    equalizer (0.0.11)
     faker (2.10.1)
       i18n (>= 1.6, < 2)
+    faraday (0.17.3)
+      multipart-post (>= 1.2, < 3)
     headless (2.3.1)
     i18n (1.8.2)
       concurrent-ruby (~> 1.0)
+    ice_nine (0.11.2)
     iniparse (1.4.4)
     jaro_winkler (1.5.4)
     jmespath (1.4.0)
+    kartograph (0.2.7)
+    multipart-post (2.1.1)
     onlyoffice_file_helper (0.1.0)
       onlyoffice_logger_helper (~> 1)
       rubyzip (~> 1.0)
@@ -66,8 +95,11 @@ GEM
     parallel (1.19.1)
     parser (2.7.0.2)
       ast (~> 2.4.0)
+    public_suffix (4.0.3)
     rainbow (3.0.0)
     regexp_parser (1.6.0)
+    resource_kit (0.1.7)
+      addressable (>= 2.3.6, < 3.0.0)
     rexml (3.2.4)
     rubocop (0.80.0)
       jaro_winkler (~> 1.5.1)
@@ -84,7 +116,13 @@ GEM
     selenium-webdriver (3.142.7)
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
+    thread_safe (0.3.6)
     unicode-display_width (1.6.1)
+    virtus (1.0.5)
+      axiom-types (~> 0.1)
+      coercible (~> 1.0)
+      descendants_tracker (~> 0.0, >= 0.0.3)
+      equalizer (~> 0.0, >= 0.0.9)
     watir (6.16.5)
       regexp_parser (~> 1.2)
       selenium-webdriver (~> 3.6)
@@ -94,6 +132,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  onlyoffice_digitalocean_wrapper!
   onlyoffice_documentserver_testing_framework!
   overcommit
   rubocop
