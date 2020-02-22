@@ -28,7 +28,10 @@ end
 
 # @return [String] next name of loader
 def next_loader_name
-  loaders_digits = loaders_names.map { |x| x[/\d+/].to_i }
+  loaders = loaders_names
+  return "#{LOADER_PATTERN}-0" if loaders.empty?
+
+  loaders_digits = loaders.map { |x| x[/\d+/].to_i }
   "#{LOADER_PATTERN}-#{loaders_digits.max + 1}"
 end
 
