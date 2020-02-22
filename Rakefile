@@ -35,6 +35,27 @@ def next_loader_name
   "#{LOADER_PATTERN}-#{loaders_digits.max + 1}"
 end
 
+def create_loader(loader_name)
+  droplet = DropletKit::Droplet.new(name: loader_name,
+                                    region: DROPLET_REGION,
+                                    image: DROPLET_IMAGE,
+                                    size: DROPLET_SIZE,
+                                    ssh_keys: [SSH_KEY_ID])
+  do_api.client.droplets.create(droplet)
+  do_api.wait_until_droplet_have_status(loader_name)
+  do_api.get_droplet_ip_by_name(loader_name)
+end
+
+def create_new_loader_and_info
+  next_loader = next_loader_name
+  ip = create_loader(next_loader)
+  puts('Server created, waiting for ssh to boot-up')
+  sleep(30)
+  puts("To access `#{next_loader}` "\
+       "run `ssh -o StrictHostKeyChecking=no root@#{ip}`")
+  ip
+end
+
 desc 'Destroy all loaders'
 task :destroy_all_loaders do
   loaders_names.each do |droplet|
@@ -49,19 +70,24 @@ end
 
 desc 'Create one more loader'
 task :create_one_more_loader do
-  next_loader = next_loader_name
-  droplet = DropletKit::Droplet.new(name: next_loader,
-                                    region: DROPLET_REGION,
-                                    image: DROPLET_IMAGE,
-                                    size: DROPLET_SIZE,
-                                    ssh_keys: [SSH_KEY_ID])
-  do_api.client.droplets.create(droplet)
-  do_api.wait_until_droplet_have_status(next_loader)
-  ip_of_server = do_api.get_droplet_ip_by_name(next_loader)
-  puts('Server created, waiting for ssh to boot-up')
-  sleep(30)
-  puts("To access `#{next_loader}` "\
-       "run `ssh -o StrictHostKeyChecking=no root@#{ip_of_server}`")
+  create_new_loader_and_info
+end
+
+task 'Create one more loader and run tests'
+task :create_loader_and_run_tests, :container_count do |_t, args|
+  args.with_defaults(container_count: 30)
+  loader_ip = create_new_loader_and_info
+  run_command = 'docker run -itd '\
+                "-e URL='#{ENV['WEBDRIVER_PAGE_OPENER_DS_URL']}' "\
+                "-e S3_KEY='#{ENV['WEBDRIVER_PAGE_OPENER_S3_KEY']}' "\
+                '-e S3_PRIVATE_KEY='\
+                "'#{ENV['WEBDRIVER_PAGE_OPENER_S3_PRIVATE_KEY']}' "\
+                'shockwavenn/onlyoffice-webdriver-page-opener;'
+  args[:continer_count].times do |_|
+    `ssh -o StrictHostKeyChecking=no root@#{loader_ip} "#{run_command}"`
+    puts('Run one container')
+    sleep(5) # Timeout between commands to not be banned by ssh
+  end
 end
 
 desc 'Stop (and remove) all containers on all loaders'
