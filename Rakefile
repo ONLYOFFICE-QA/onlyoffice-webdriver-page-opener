@@ -58,6 +58,8 @@ task :create_one_more_loader do
   do_api.client.droplets.create(droplet)
   do_api.wait_until_droplet_have_status(next_loader)
   ip_of_server = do_api.get_droplet_ip_by_name(next_loader)
+  puts('Server created, waiting for ssh to boot-up')
+  sleep(30)
   puts("To access `#{next_loader}` run `ssh root@#{ip_of_server}`")
 end
 
