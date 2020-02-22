@@ -60,7 +60,8 @@ task :create_one_more_loader do
   ip_of_server = do_api.get_droplet_ip_by_name(next_loader)
   puts('Server created, waiting for ssh to boot-up')
   sleep(30)
-  puts("To access `#{next_loader}` run `ssh root@#{ip_of_server}`")
+  puts("To access `#{next_loader}` "\
+       "run `ssh -o StrictHostKeyChecking=no root@#{ip_of_server}`")
 end
 
 desc 'Stop (and remove) all containers on all loaders'
