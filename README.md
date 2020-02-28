@@ -34,5 +34,5 @@ some ENV variables (for example in `~/.bashrc` file)
 
 `WEBDRIVER_PAGE_OPENER_SSH_KEY_ID` - id of SSH key in DigitalOcean API  
 `WEBDRIVER_PAGE_OPENER_S3_KEY` - S3 Key  
-`WEBDRIVER_PAGE_OPENER_S3_PRIVATE_KEY=` - S3 private key  
+`WEBDRIVER_PAGE_OPENER_S3_PRIVATE_KEY` - S3 private key  
 `WEBDRIVER_PAGE_OPENER_DS_URL` - url of DocumentServer to open   
