@@ -4,8 +4,8 @@ require 'bundler/setup'
 require 'onlyoffice_digitalocean_wrapper'
 
 # @return [String] pattern for naming loaders
-LOADER_PATTERN = 'lobashov-load'
-SSH_KEY_ID = 12_886_810
+LOADER_PATTERN = 'webdriver-page-opener-loader'
+SSH_KEY_ID = ENV['WEBDRIVER_PAGE_OPENER_SSH_KEY_ID']
 DROPLET_SIZE = 's-32vcpu-192gb'
 DROPLET_REGION = 'nyc3'
 DROPLET_IMAGE = 'docker-18-04'
