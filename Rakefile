@@ -56,6 +56,19 @@ def create_new_loader_and_info
   ip
 end
 
+# Check if all variables correctly initialized
+def check_variables
+  unless ENV['WEBDRIVER_PAGE_OPENER_DS_URL']
+    raise('WEBDRIVER_PAGE_OPENER_DS_URL env is not defined')
+  end
+  unless ENV['WEBDRIVER_PAGE_OPENER_S3_KEY']
+    raise('WEBDRIVER_PAGE_OPENER_S3_KEY env is not defined')
+  end
+  return if ENV['WEBDRIVER_PAGE_OPENER_S3_PRIVATE_KEY']
+
+  raise('WEBDRIVER_PAGE_OPENER_S3_PRIVATE_KEY env is not defined')
+end
+
 desc 'Destroy all loaders'
 task :destroy_all_loaders do
   loaders_names.each do |droplet|
@@ -75,6 +88,7 @@ end
 
 desc 'Create one more loader and run tests'
 task :create_loader_and_run_tests, :container_count do |_t, args|
+  check_variables
   args.with_defaults(container_count: 30)
   loader_ip = create_new_loader_and_info
   run_command = 'docker run -itd '\
