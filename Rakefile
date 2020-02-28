@@ -90,6 +90,7 @@ desc 'Create one more loader and run tests'
 task :create_loader_and_run_tests, :container_count do |_t, args|
   check_variables
   args.with_defaults(container_count: 30)
+  container_count = args[:container_count].to_i
   loader_ip = create_new_loader_and_info
   run_command = 'docker run -itd '\
                 "-e URL='#{ENV['WEBDRIVER_PAGE_OPENER_DS_URL']}' "\
@@ -97,7 +98,7 @@ task :create_loader_and_run_tests, :container_count do |_t, args|
                 '-e S3_PRIVATE_KEY='\
                 "'#{ENV['WEBDRIVER_PAGE_OPENER_S3_PRIVATE_KEY']}' "\
                 'shockwavenn/onlyoffice-webdriver-page-opener;'
-  args[:container_count].to_i.times do |_|
+  container_count.times do |_|
     `ssh -o StrictHostKeyChecking=no root@#{loader_ip} "#{run_command}"`
     puts('Run one container')
     sleep(5) # Timeout between commands to not be banned by ssh
