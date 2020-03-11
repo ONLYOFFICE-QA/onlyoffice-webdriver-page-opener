@@ -87,7 +87,7 @@ task :create_one_more_loader do
 end
 
 desc 'Create one more loader and run tests'
-task :create_loader_and_run_tests, :container_count do |_t, args|
+task :create_loader_and_run_tests, :container_count, :loader_ip do |_t, args|
   check_variables
   args.with_defaults(container_count: 30)
   args.with_defaults(loader_ip: create_new_loader_and_info)
