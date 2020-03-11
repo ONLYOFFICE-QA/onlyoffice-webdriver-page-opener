@@ -86,7 +86,9 @@ task :create_one_more_loader do
   create_new_loader_and_info
 end
 
-desc 'Create one more loader and run tests'
+desc 'Create one more loader and run tests'\
+     'full syntax like this: '\
+     "`rake create_loader_and_run_tests[30,'192.168.1.1']`"
 task :create_loader_and_run_tests, :container_count, :loader_ip do |_t, args|
   check_variables
   args.with_defaults(container_count: 30)
