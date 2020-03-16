@@ -40,6 +40,7 @@ def create_loader(loader_name)
                                     region: DROPLET_REGION,
                                     image: DROPLET_IMAGE,
                                     size: DROPLET_SIZE,
+                                    monitoring: true,
                                     ssh_keys: [SSH_KEY_ID])
   do_api.client.droplets.create(droplet)
   do_api.wait_until_droplet_have_status(loader_name)
